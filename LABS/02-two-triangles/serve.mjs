@@ -1,9 +1,11 @@
 import { createServer } from "node:http";
 import { readFile } from "node:fs/promises";
 import { fileURLToPath } from "node:url";
-import { extname, isAbsolute, relative, resolve } from "node:path";
+import { basename, extname, isAbsolute, relative, resolve } from "node:path";
 
 const root = fileURLToPath(new URL(".", import.meta.url));
+const labName = basename(root);
+const defaultDocument = `/${labName}.html`;
 const port = Number(process.env.PORT ?? 4173);
 const contentTypes = {
   ".html": "text/html; charset=utf-8",
@@ -24,7 +26,7 @@ createServer(async (request, response) => {
     return;
   }
 
-  const filePath = resolve(root, `.${pathname === "/" ? "/01-first-webgl.html" : pathname}`);
+  const filePath = resolve(root, `.${pathname === "/" ? defaultDocument : pathname}`);
   const relativePath = relative(root, filePath);
   if (relativePath.startsWith("..") || isAbsolute(relativePath)) {
     response.writeHead(403).end("Forbidden");
@@ -47,5 +49,5 @@ createServer(async (request, response) => {
     response.writeHead(500).end("Internal server error");
   }
 }).listen(port, "127.0.0.1", () => {
-  console.log(`First WebGL lab: http://127.0.0.1:${port}/`);
+  console.log(`Lab "${labName}": http://127.0.0.1:${port}/`);
 });
