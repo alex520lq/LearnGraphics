@@ -1,47 +1,37 @@
-# 参考资料
+# References — 官方课程、文档与教材索引
 
-分类整理图形学学习与实时渲染开发过程中使用的书籍、课程、论文、文档与开源项目。
+优先级：官方课程页 > 官方视频/课件 > 官方 API 文档 > 可靠教程 > 社区文章。链接变化时以官网为准；未核实的播放列表标记「待核实」，不编造。
 
-## 推荐资料
+## 核心课程
 
-| 类型 | 名称 | 说明 |
-|------|------|------|
-| 课程 | GAMES101 | 现代计算机图形学入门 |
-| 课程 | GAMES202 | 高质量实时渲染 |
-| 书籍 | Real-Time Rendering | 实时渲染领域权威参考 |
-| 书籍 | Physically Based Rendering | PBR 理论与实践 |
-| 教程 | LearnOpenGL | OpenGL 与图形学实践 |
-| 文档 | WebGL Fundamentals | WebGL 系统教程 |
+| 资源 | 官方入口 | 用途 |
+|---|---|---|
+| GAMES101 | https://sites.cs.ucsb.edu/~lingqi/teaching/games101.html | 图形学基础，必修 |
+| CS4600 | https://graphics.cs.utah.edu/courses/cs4600/fall2026/ | 项目型入门补充，选修/重复 |
+| CS5610/6610 | https://graphics.cs.utah.edu/courses/cs5610/ | OpenGL/GLSL 进阶对照 |
+| GAMES202 | https://sites.cs.ucsb.edu/~lingqi/teaching/games202.html | 高质量实时渲染，必修核心 |
+| GAMES106 | https://games-cn.org/games106/ | 现代绘制流水线与工程 |
+| GAMES104 | https://games104.boomingtech.com/ | 游戏引擎架构进阶 |
 
-## 学习资源索引
+## WebGL 与 Shader
 
-### 课程
+- WebGL Fundamentals：https://webglfundamentals.org/
+- WebGL 2 Fundamentals：https://webgl2fundamentals.org/
+- MDN：https://developer.mozilla.org/en-US/docs/Web/API/WebGL_API
+- Khronos：https://www.khronos.org/webgl/
+- The Book of Shaders：https://thebookofshaders.com/
+- Shadertoy：https://www.shadertoy.com/
 
-- [GAMES101: 现代计算机图形学入门](https://www.bilibili.com/video/BV1X74y147L7/)
-- [GAMES202: 高质量实时渲染](https://www.bilibili.com/video/BV1S54y1R7SB)
-- [MIT 6.837 Computer Graphics](https://ocw.mit.edu/courses/6-837-computer-graphics-fall-2012/)
+## 微信小游戏
 
-### 书籍
+官方入口：https://developers.weixin.qq.com/minigame/dev/guide/ 。开始适配时重新核对当前 Canvas、WebGL、资源加载、生命周期和基础库文档。
 
-- *Real-Time Rendering* — Tomas Akenine-Möller et al.
-- *Physically Based Rendering* — Matt Pharr et al.
-- *Computer Graphics: Principles and Practice* — James D. Foley et al.
+## 教材与开源项目
 
-### 在线教程与文档
+- Fundamentals of Computer Graphics — Marschner & Shirley：按课程章节阅读。
+- Real-Time Rendering — Akenine-Möller 等：实时渲染参考书。
+- PBRT：https://pbr-book.org/ ：离线物理渲染选修。
+- Filament：https://github.com/google/filament
+- Three.js：https://github.com/mrdoob/three.js
 
-- [LearnOpenGL](https://learnopengl.com/)
-- [WebGL Fundamentals](https://webglfundamentals.org/)
-- [The Book of Shaders](https://thebookofshaders.com/)
-- [Shadertoy](https://www.shadertoy.com/)
-
-### 工具
-
-- [RenderDoc](https://renderdoc.org/)
-- [NVIDIA Nsight Graphics](https://developer.nvidia.com/nsight-graphics)
-- [Tracy Profiler](https://github.com/wolfpld/tracy)
-
-## 使用约定
-
-- 新增资料请注明来源、适用场景与阅读状态。
-- 论文请附 DOI 或 arXiv 链接。
-- 开源项目请注明许可证与版本。
+开始每阶段前核验链接和版本，记录日期。无法确认的资源标记「待核实」。
