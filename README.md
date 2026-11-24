@@ -1,67 +1,64 @@
 # LearnGraphics
 
-**计算机图形学 · 实时渲染 · 游戏图形编程**
+**从图形学基础到游戏实时渲染开发**
 
-一个系统化的图形学学习与知识沉淀仓库，覆盖从数学基础到实时渲染引擎开发的完整路径。
+面向游戏开发的计算机图形学自学课程、实验与作品集。目标不是单纯学完大学课程，而是能够为一款尚未开发的游戏设计、实现、调试和优化渲染功能。
 
-## 学习目标
+> 学习原则：先理解原理，再用最小 API 实现；每个知识点都要落到可运行实验；以作品验收，不以看完视频验收。
 
-- 掌握计算机图形学核心数学基础与渲染管线原理
-- 理解实时渲染技术栈：WebGL / OpenGL / Vulkan / DirectX
-- 熟练编写 GLSL / HLSL Shader
-- 实现 PBR 光照、阴影与全局光照等高级渲染特性
-- 具备游戏图形引擎渲染模块的开发与优化能力
+## 目标
 
-## 目录结构
+- 建立数学、几何和渲染管线基础。
+- 从原生 WebGL 1.0 / GLSL ES 1.00 入门，理解 GPU。
+- 实现不依赖大型引擎的 MiniGame Renderer。
+- 掌握 Sprite、Mesh、Camera、Material、Lighting、Shadow、Post Processing。
+- 面向微信小游戏等受限环境，理解 API、资源、兼容性和移动 GPU 预算。
+- 能为具体游戏类型制定渲染方案并交付可运行 Demo。
 
-```
-LearnGraphics/
-├── README.md                          # 项目概览（本文件）
-├── ROADMAP.md                         # 学习路线图
-├── PROGRESS.md                        # 学习进度跟踪
-├── CURRICULUM/                        # 课程学习文档
-│   ├── 00-Prerequisites.md            # 前置知识
-│   ├── 01-GAMES101.md                 # GAMES101 课程
-│   ├── 02-WebGL-Basics.md             # WebGL 基础
-│   ├── 03-Game-Rendering.md           # 游戏渲染管线
-│   ├── 04-Shader-Programming.md       # Shader 编程
-│   ├── 05-Lighting-PBR.md             # 光照与 PBR
-│   ├── 06-Shadow-GI.md                # 阴影与全局光照
-│   └── 07-Rendering-Optimization.md   # 渲染优化
-├── EXERCISES/                         # 练习与作业
-├── PROJECTS/                          # 实战项目
-├── NOTES/                             # 学习笔记
-├── REFERENCES/                        # 参考资料
-└── TRACKING/                          # 进度与问题跟踪
-```
+## 学习路径
 
-## 学习路径概览
+| 阶段 | 主题 | 核心产出 | 属性 |
+|---|---|---|---|
+| 00 | 环境与工程习惯 | 可运行开发环境 | 必修 |
+| 01 | 数学与图形学预备 | 向量/矩阵实验 | 必修基础 |
+| 02 | GAMES101 | 软件光栅化器 | 必修理论 |
+| 03 | 原生 WebGL 1.0 | 可交互 3D 场景 | 必修 |
+| 04 | 游戏渲染架构 | Mini Renderer v0.1 | 必修 |
+| 05 | Shader 与游戏视觉 | 游戏效果 Shader 集 | 必修 |
+| 06 | 光照与 PBR | 材质球实验室 | 必修 |
+| 07 | 阴影、AO、后处理 | 综合渲染场景 | 必修核心 |
+| 08 | 微信小游戏适配 | 真机运行 Demo | 必修目标 |
+| 09 | 性能与高级渲染 | 优化报告 | 必修基础/选修专题 |
+| 10 | 游戏专项毕业项目 | 可复用渲染模块 | 必修 |
 
-| 阶段 | 主题 | 核心产出 |
-|------|------|----------|
-| 00 | 前置知识 | 数学与编程基础巩固 |
-| 01 | GAMES101 | 光栅化、几何、着色理论基础 |
-| 02 | WebGL 基础 | 可运行的 WebGL 渲染示例 |
-| 03 | 游戏渲染管线 | 完整渲染流程实现 |
-| 04 | Shader 编程 | GLSL / HLSL 特效 Shader |
-| 05 | 光照与 PBR | 基于物理的渲染实现 |
-| 06 | 阴影与全局光照 | 阴影映射与 GI 方案 |
-| 07 | 渲染优化 | 性能分析与优化实践 |
+详见 [ROADMAP.md](ROADMAP.md)。
 
-## 推荐资源
+## 仓库结构
 
-- [GAMES101: 现代计算机图形学入门](https://www.bilibili.com/video/BV1X74y147L7/)
-- [GAMES202: 高质量实时渲染](https://www.bilibili.com/video/BV1S54y1R7SB)
-- [LearnOpenGL](https://learnopengl.com/)
-- [WebGL Fundamentals](https://webglfundamentals.org/)
-- [Real-Time Rendering](https://www.realtimerendering.com/)
+- [CURRICULUM/](CURRICULUM/)：课程、目标、资源和验收标准。
+- [EXERCISES/](EXERCISES/)：小练习与作业。
+- [PROJECTS/](PROJECTS/)：贯穿式渲染器和最终游戏项目。
+- [REFERENCES/](REFERENCES/)：官方课程、文档、教材与视频索引。
+- [NOTES/](NOTES/)：概念笔记、公式推导、踩坑记录。
+- [TRACKING/](TRACKING/)：每周记录、作业模板、阶段验收。
+- [PROGRESS.md](PROGRESS.md)：当前学习状态。
 
-## 使用说明
+## 技术路线
 
-- 学习路线与阶段目标见 [ROADMAP.md](ROADMAP.md)
-- 当前进度与完成情况见 [PROGRESS.md](PROGRESS.md)
-- 各阶段详细内容见 [CURRICULUM/](CURRICULUM/)
+先 WebGL 1.0，再按需求扩展。初期使用原生 Canvas + WebGL API，不用 Three.js、Babylon.js 等封装，以理解 Shader、Buffer、Texture、Draw Call 和 GPU 状态。之后单独学习 WebGL 2.0，并为微信小游戏增加 Platform Adapter。
 
-## 许可
+WebGL 1.0 是教学起点，不代表所有微信小游戏项目都必须使用 WebGL 1.0。最终以目标基础库、设备覆盖范围和实测为准。
 
-MIT License
+## 每课学习闭环
+
+1. 游戏场景与学习目标。
+2. 原理、公式、坐标空间和 GPU 流程。
+3. 最小实现。
+4. 参数实验和边界测试。
+5. 独立作业。
+6. 代码、运行结果和原理验收。
+7. 更新笔记与进度。
+
+当前阶段：00 环境与工程习惯。主线项目：MiniGame Renderer。
+
+课程链接与第三方代码遵循各自版权和许可；引用时保留来源。
