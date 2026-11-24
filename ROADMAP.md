@@ -1,191 +1,125 @@
-# 学习路线图
+# LearnGraphics Roadmap
 
-本路线图将图形学学习划分为 8 个阶段，从数学基础到渲染优化逐步推进。每个阶段包含核心主题、推荐资源与实践任务。
+面向**游戏实时渲染开发**，从基础入门开始。预计 9–15 个月，每周 6–10 小时；按基础与游戏项目调整，不要求机械完成每门课的全部内容。
 
-## 阶段总览
+## 总体路线
 
 ```
-00 前置知识 → 01 GAMES101 → 02 WebGL 基础 → 03 游戏渲染管线
-                                                      ↓
-07 渲染优化 ← 06 阴影与 GI ← 05 光照与 PBR ← 04 Shader 编程
+环境/数学 → GAMES101 → 原生 WebGL 1.0
+                         ↓
+小游戏 Renderer ← 游戏渲染架构 ← Shader
+                         ↓
+              光照/PBR → 阴影/AO/后处理
+                         ↓
+            微信小游戏适配 → 性能优化
+                         ↓
+                  游戏专项项目
 ```
 
-## 阶段 00：前置知识
+## 00 环境与工程习惯（必修）
 
-**目标**：建立必要的数学与编程基础。
+安装 Node.js LTS、Git、编辑器和浏览器；熟悉静态服务器、DevTools、Console、Network；Clone 仓库并完成第一次 commit/push。
 
-**核心主题**
-- 线性代数：向量、矩阵、变换、点积与叉积
-- 微积分基础：导数、积分、黎曼和
-- 概率统计：采样、分布、蒙特卡洛方法基础
-- C++ 基础：面向对象、模板、内存管理
-- 工程实践：CMake、Git、调试技巧
+**交付/验收**：本地运行 HTML 页面；能说明启动、调试和提交步骤。
 
-**推荐资源**
-- 《线性代数及其应用》David C. Lay
-- [Mathematics for Computer Graphics](https://www.cs.cornell.edu/courses/cs4620/)
-- [LearnCPP](https://www.learncpp.com/)
+## 01 数学与图形学预备（必修基础，按需补课）
 
-**实践任务**
-- [ ] 实现向量与矩阵运算库
-- [ ] 实现简单的光线与平面求交
+向量、点积、叉积、矩阵、齐次坐标、平移/旋转/缩放、Model/World/View/Clip/NDC/Screen 空间、透视与正交投影、角度弧度。
 
-**验收标准**：能够独立推导视图变换与投影变换矩阵。
+资源：3Blue1Brown 线性代数系列、GAMES101 数学讲解、Scratchapixel。
 
-## 阶段 01：GAMES101
+练习：Vec2/Vec3、2D 变换可视化、矩阵变换链、射线与平面求交。
 
-**目标**：系统掌握现代图形学核心理论。
+**验收**：能解释点积、叉积、齐次坐标、透视除法及坐标空间。
 
-**核心主题**
-- 向量与矩阵、变换（模型/视图/投影）
-- 光栅化：三角形光栅化、深度测试、抗锯齿
-- 着色：Blinn-Phong 模型、着色频率、纹理映射
-- 几何：网格、贝塞尔曲线、曲面细分
-- 光线追踪：Whitted 风格、路径追踪基础
+## 02 GAMES101（必修理论主课）
 
-**推荐资源**
-- [GAMES101 课程主页](https://www.bilibili.com/video/BV1X74y147L7/)
-- [GAMES101 作业仓库](https://github.com/hzgrtdei/Assignment-Games101)
+重点：变换、光栅化、深度、透视正确插值、抗锯齿、着色、纹理、几何、光线追踪和路径追踪基础。
 
-**实践任务**
-- [ ] 完成 GAMES101 全部 8 次作业
-- [ ] 整理课程笔记到 [01-GAMES101.md](CURRICULUM/01-GAMES101.md)
+资源：
+- 官方主页：https://sites.cs.ucsb.edu/~lingqi/teaching/games101.html
+- GAMES 平台：https://games-cn.org/
+- B站课程录像：https://www.bilibili.com/video/BV1X7411F744
+- 教材参考：《Fundamentals of Computer Graphics》，按讲义章节查阅，不要求通读。
 
-**验收标准**：能够从零实现软光栅化器与简单光线追踪器。
+优先完成变换、光栅化、插值、纹理和基础光追作业；作业框架以官方材料为准。
 
-## 阶段 02：WebGL 基础
+**交付**：CPU 软件光栅化器，支持三角形、深度、插值、纹理；简易光追选做。
 
-**目标**：掌握 WebGL API 与 GPU 渲染流程。
+## 03 原生 WebGL 1.0（必修实践主课）
 
-**核心主题**
-- WebGL 上下文与渲染管线
-- 着色器编译、程序链接、Uniform/Attribute
-- 缓冲区对象（VBO/VAO/EBO）
-- 纹理、帧缓冲、混合与深度测试
-- 矩阵库（gl-matrix）与相机控制
+Canvas/context、GLSL ES 1.00、Shader 编译链接、attribute/uniform、Buffer、纹理、viewport、深度测试、混合、剔除、矩阵、相机和动画循环。
 
-**推荐资源**
-- [WebGL Fundamentals](https://webglfundamentals.org/)
-- [The Book of Shaders](https://thebookofshaders.com/)
+资源：
+- https://webglfundamentals.org/
+- https://developer.mozilla.org/en-US/docs/Web/API/WebGL_API
+- https://www.khronos.org/webgl/
 
-**实践任务**
-- [ ] 绘制三角形与立方体
-- [ ] 实现纹理映射与简单相机
-- [ ] 实现离屏渲染（FBO）
+第一轮严格使用 WebGL 1.0：attribute/varying/gl_FragColor。不要把 WebGL 2.0 的 VAO 等能力混入基础作业。
 
-**验收标准**：独立完成一个可交互的 3D 场景。
+**交付**：原生 WebGL 旋转立方体、纹理场景和可交互相机。
 
-## 阶段 03：游戏渲染管线
+## 04 游戏渲染基础架构（必修）
 
-**目标**：理解并实现游戏引擎的渲染架构。
+Renderer、Renderable、Transform、Camera、Mesh、Material、Texture、资源缓存、Sprite/Sprite Sheet、Render Queue、Draw Call 统计、update/render 游戏循环。
 
-**核心主题**
-- 渲染管线架构：Forward / Deferred / TBDR
-- 场景图、可见性剔除（视锥/遮挡）
-- 材质系统、渲染队列、批处理与实例化
-- 后处理：Bloom、色调映射、FXAA/TAA
-- 多 Pass 与渲染目标管理
+**交付**：MiniGame Renderer v0.1，支持 2D Sprite 与基础 3D Mesh。
 
-**推荐资源**
-- [LearnOpenGL - Advanced Lighting](https://learnopengl.com/Advanced-Lighting/Advanced-Lighting)
-- [Real-Time Rendering, 4th Edition](https://www.realtimerendering.com/)
+## 05 Shader 与游戏视觉（必修）
 
-**实践任务**
-- [ ] 实现 Forward 与 Deferred 渲染路径
-- [ ] 实现基础后处理链
+GLSL ES 1.00、UV、坐标空间、Alpha/Blend、Sprite tint、受击闪白、Dissolve、粒子、Lambert、Phong/Blinn-Phong、Toon/Ramp、Fresnel。
 
-**验收标准**：能够说明不同渲染路径的取舍并实现其中一种。
+**交付**：至少 5 个可调参数的游戏 Shader 效果。
 
-## 阶段 04：Shader 编程
+## 06 光照与 PBR（必修核心）
 
-**目标**：熟练使用 GLSL/HLSL 编写渲染效果。
+线性颜色与 Gamma、法线、漫反射/镜面反射、BRDF、Cook–Torrance、GGX、Fresnel-Schlick、Metallic-Roughness、HDR、IBL。
 
-**核心主题**
-- GLSL/HLSL 语法与数据类型
-- 顶点/片元/几何/计算着色器
-- 常用算法：噪声、SDF、模糊、边缘检测
-- Shader 调试与性能分析
-- Shader 变体与管理
+资源：GAMES202、LearnOpenGL PBR（作为概念参考）、Real-Time Rendering。
 
-**推荐资源**
-- [The Book of Shaders](https://thebookofshaders.com/)
-- [Shadertoy](https://www.shadertoy.com/)
+**交付**：可调 Metallic、Roughness、光源和环境光的材质实验室。
 
-**实践任务**
-- [ ] 实现 5 个以上 Shadertoy 风格效果
-- [ ] 实现卡通渲染（Toon Shading）Shader
-- [ ] 实现屏幕空间描边
+## 07 阴影、AO 与后处理（必修核心专题）
 
-**验收标准**：能够将任意视觉效果拆解为 Shader 实现。
+Framebuffer、Shadow Mapping、Bias、PCF、PCSS/CSM 进阶、SSAO、Bloom、Tone Mapping、Gamma、FXAA；TAA/SSR/GI 后续选修。
 
-## 阶段 05：光照与 PBR
+**交付**：带阴影和至少两种后处理效果的场景。
 
-**目标**：掌握基于物理的渲染理论与实际实现。
+## 08 微信小游戏适配（必修目标）
 
-**核心主题**
-- 辐射度量学与光度学基础
-- 反射模型：BRDF、微表面理论
-- 漫反射与镜面反射（Cook-Torrance）
-- 材质模型：金属度-粗糙度工作流
-- 图像基照明（IBL）：辐照度图、预滤波环境图、BRDF LUT
+查阅当前官方 Canvas/WebGL 文档；封装 Platform Adapter；处理资源加载、生命周期、屏幕尺寸、DPR、输入、纹理限制和设备差异；真机测启动与帧时间。
 
-**推荐资源**
-- [LearnOpenGL - PBR](https://learnopengl.com/PBR/Theory)
-- [Real Shading in Unreal Engine 4](https://blog.selfshadow.com/publications/s2013-shading-course/karis/s2013_pbs_epic_notes_v2.pdf)
+官方入口：https://developers.weixin.qq.com/minigame/dev/guide/
 
-**实践任务**
-- [ ] 实现 Cook-Torrance BRDF
-- [ ] 实现 IBL 材质系统
-- [ ] 搭建材质参数调试界面
+注意：小游戏不是普通浏览器 DOM。不要假设 document、Image、fetch、requestAnimationFrame 和文件路径行为完全相同。以当前基础库文档和真机测试为准。
 
-**验收标准**：能够解释并实现 PBR 核心公式。
+**交付**：目标小游戏环境运行的 Sprite Demo，记录设备、基础库和兼容性。
 
-## 阶段 06：阴影与全局光照
+## 09 性能与高级渲染（性能基础必修，专题选修）
 
-**目标**：实现高质量阴影与间接光照。
+必修：CPU/GPU 瓶颈、帧时间、Draw Call、批处理、实例化、剔除、LOD、纹理尺寸/Mipmap/带宽、目标设备测试。
 
-**核心主题**
-- 阴影映射（Shadow Mapping）与级联阴影（CSM）
-- 软阴影：PCF、PCSS、VSM、ESM
-- 屏幕空间环境光遮蔽（SSAO）
-- 全局光照：光照探针、辐照度体积、光线追踪 GI
-- 实时光线追踪基础（DXR / Vulkan RT）
+选修：WebGL 2.0、Vulkan/Metal/Direct3D、Deferred/Forward+、TAA、SSR、实时 GI、实时光追、GPU-driven。
 
-**推荐资源**
-- [GAMES202 课程主页](https://www.bilibili.com/video/BV1S54y1R7SB)
-- [Real-Time Shadows](https://www.realtimerendering.com/realtimeshadows.html)
+**交付**：记录设备、场景、分辨率、帧时间、瓶颈和优化收益的报告。
 
-**实践任务**
-- [ ] 实现基础阴影映射与 PCF 软阴影
-- [ ] 实现 SSAO
-- [ ] 实现简单的实时 GI 方案
+## 10 游戏专项毕业项目（必修）
 
-**验收标准**：能够对比不同阴影技术的质量与性能差异。
+选择 2D Roguelike/塔防、3D 卡通动作、3D 写实 RPG 或俯视角/等距游戏。提交技术方案、模块图、可运行 Demo、源码、性能预算、兼容性记录和复盘。
 
-## 阶段 07：渲染优化
+## 重复内容与选课原则
 
-**目标**：掌握渲染性能分析与优化方法。
+| 内容 | 首次学习 | 后续复用 |
+|---|---|---|
+| 光栅化 | GAMES101 | WebGL 映射到 GPU 状态和 Draw Call |
+| 变换/相机 | 数学与 GAMES101 | WebGL 实现、Renderer 封装 |
+| Shader | WebGL 基础 | 后续专注游戏效果 |
+| 光照 | Lambert/Phong | PBR 升级模型 |
+| 阴影 | Shadow Mapping | GAMES202 学高级质量改进 |
+| 光追 | GAMES101 概念 | 项目需要时再深入 |
 
-**核心主题**
-- 性能瓶颈定位：CPU/GPU 负载分析
-- Draw Call 优化：合批、实例化、GPU Driven
-- 带宽与缓存优化：纹理压缩、Mipmap、UBO
-- LOD、遮挡剔除、GPU 可见性
-- 时序分析：GPU Profiler、RenderDoc
+CS4600 与 GAMES101 入门理论重叠，作为英文项目型补充；CS5610/6610 作为 OpenGL/GLSL 对照，不是 WebGL 主线硬性先修；CS6620/PBRT 偏离线渲染，属于选修。
 
-**推荐资源**
-- [RenderDoc](https://renderdoc.org/)
-- [GPU Gems](https://developer.nvidia.com/gpugems/gpugems3/contributors)
+## 阶段完成定义
 
-**实践任务**
-- [ ] 使用 RenderDoc 分析一个完整场景
-- [ ] 完成一次系统的性能优化并量化收益
-- [ ] 撰写优化报告到 [07-Rendering-Optimization.md](CURRICULUM/07-Rendering-Optimization.md)
-
-**验收标准**：能够独立定位瓶颈并完成端到端优化。
-
-## 更新记录
-
-| 日期 | 内容 |
-|------|------|
-| 2026-11-24 | 初始版本，定义 8 个学习阶段 |
+需同时满足：能解释关键原理；独立完成核心实验；能解释关键代码和坐标空间；提交可复现运行证据；更新 PROGRESS 和阶段复盘。只看完视频不算完成。
