@@ -67,22 +67,23 @@ if (!gl.getProgramParameter(program, gl.LINK_STATUS)) {
   throw new Error(gl.getProgramInfoLog(program));
 }
 
-const mesh ={
-  positions:new Float32Array( [
-  -0.8,  0.8,  // 顶点 0
-   0.8,  0.8,  // 顶点 1
-   0.8, -0.8,  // 顶点 2
-  -0.8, -0.8   // 顶点 3
+const mesh = {
+  positions: new Float32Array([
+    -0.8, 0.8,  // 顶点 0
+    0.8, 0.8,  // 顶点 1
+    0.8, -0.8,  // 顶点 2
+    -0.8, -0.8   // 顶点 3
   ]),
-colors : new Float32Array([
-  1, 0, 0,  // 顶点 0：红
-  0, 1, 0,  // 顶点 1：绿
-  0, 0, 1,  // 顶点 2：蓝
-  1, 1, 0   // 顶点 3：黄
-]),indices : new Uint16Array([
-  0, 1, 2,
-  0, 2, 3
-])
+  colors: new Float32Array([
+    1, 0, 0,  // 顶点 0：红
+    0, 1, 0,  // 顶点 1：绿
+    0, 0, 1,  // 顶点 2：蓝
+    1, 1, 0   // 顶点 3：黄
+  ]),
+  indices: new Uint16Array([
+    0, 1, 2,
+    0, 2, 3
+  ])
 }
 
 // 8. 创建并上传位置 Buffer
@@ -91,7 +92,7 @@ const positionBuffer = gl.createBuffer();
 gl.bindBuffer(gl.ARRAY_BUFFER, positionBuffer);
 gl.bufferData(gl.ARRAY_BUFFER, mesh.positions, gl.STATIC_DRAW);
 
-const indexBuffer =gl.createBuffer();
+const indexBuffer = gl.createBuffer();
 gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER,
   indexBuffer
 )
