@@ -8,7 +8,11 @@
     "module": "esnext",
     "moduleResolution": "bundler",
     "moduleDetection": "force",
-    "types": []
+    "types": [],
+    "strict": false,
+    "noImplicitAny": false,
+    "strictNullChecks": false,
+    "strictFunctionTypes": false
   },
   "include": ["LABS/**/*.js", "EXERCISES/**/*.js", "PROJECTS/**/*.js"],
   "exclude": ["node_modules", "**/node_modules/**"]
