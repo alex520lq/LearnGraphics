@@ -67,33 +67,29 @@ if (!gl.getProgramParameter(program, gl.LINK_STATUS)) {
   throw new Error(gl.getProgramInfoLog(program));
 }
 
-// 6. 顶点位置数据
-const positions =new Float32Array( [
+const mesh ={
+  positions:new Float32Array( [
   -0.8,  0.8,  // 顶点 0
    0.8,  0.8,  // 顶点 1
    0.8, -0.8,  // 顶点 2
   -0.8, -0.8   // 顶点 3
-]);
-
-// 创建顶点索引
-const indices = new Uint16Array([
-  0, 1, 2,
-  0, 2, 3
-]);
-
-// 7. 顶点颜色数据
-const colors = new Float32Array([
+  ]),
+colors : new Float32Array([
   1, 0, 0,  // 顶点 0：红
   0, 1, 0,  // 顶点 1：绿
   0, 0, 1,  // 顶点 2：蓝
   1, 1, 0   // 顶点 3：黄
-]);
+]),indices : new Uint16Array([
+  0, 1, 2,
+  0, 2, 3
+])
+}
 
 // 8. 创建并上传位置 Buffer
 const positionBuffer = gl.createBuffer();
 
 gl.bindBuffer(gl.ARRAY_BUFFER, positionBuffer);
-gl.bufferData(gl.ARRAY_BUFFER, positions, gl.STATIC_DRAW);
+gl.bufferData(gl.ARRAY_BUFFER, mesh.positions, gl.STATIC_DRAW);
 
 const indexBuffer =gl.createBuffer();
 gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER,
@@ -101,7 +97,7 @@ gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER,
 )
 gl.bufferData(
   gl.ELEMENT_ARRAY_BUFFER,
-  indices,
+  mesh.indices,
   gl.STATIC_DRAW
 );
 
@@ -109,7 +105,7 @@ gl.bufferData(
 const colorBuffer = gl.createBuffer();
 
 gl.bindBuffer(gl.ARRAY_BUFFER, colorBuffer);
-gl.bufferData(gl.ARRAY_BUFFER, colors, gl.STATIC_DRAW);
+gl.bufferData(gl.ARRAY_BUFFER, mesh.colors, gl.STATIC_DRAW);
 
 // 10. 设置 Canvas 视口
 gl.viewport(0, 0, canvas.width, canvas.height);
@@ -131,10 +127,10 @@ gl.enableVertexAttribArray(positionLocation);
 gl.vertexAttribPointer(
   positionLocation, //	对应 Shader 中的哪个 attribute
   2, //	每个顶点读取两个分量c
-  gl.FLOAT, //	每个顶点读取两个分量c
-  false, //	每个顶点读取两个分量c
-  0, //	每个顶点读取两个分量
-  0, //	每个顶点读取两个分量
+  gl.FLOAT, //	
+  false, // 
+  0, //	 
+  0, //	 
 );
 
 // 14. 绑定顶点颜色
@@ -154,4 +150,4 @@ gl.drawElements(
   0
 );
 
-console.log("LearnGraphics: WebGL Triangle Rendered!");
+console.log("LearnGraphics: Indexed Rectangle Rendered!");
