@@ -1,4 +1,4 @@
-const canvas = /** @type {HTMLCanvasElement} */ (document.getElementById("canvas"));
+const canvas = document.querySelector("canvas");
 const gl = canvas.getContext("webgl");
 
 if (!gl) {

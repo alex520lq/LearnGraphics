@@ -1,4 +1,4 @@
-const canvas = /** @type {HTMLCanvasElement} */ (document.getElementById("canvas"));
+const canvas = document.querySelector("canvas");
 
 // 1. 获取 WebGL 1.0 上下文
 const gl = canvas.getContext("webgl");
