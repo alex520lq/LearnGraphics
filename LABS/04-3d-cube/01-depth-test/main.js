@@ -1,4 +1,6 @@
-const canvas = document.getElementById("canvas");
+const canvas = document.querySelector("canvas");
+
+// 1. 获取 WebGL 1.0 上下文
 const gl = canvas.getContext("webgl");
 
 if (!gl) {
@@ -59,21 +61,93 @@ const program = createProgram(gl, vertexShaderSource, fragmentShaderSource);
 // Triangle A: red and farther away (NDC z = +0.5).
 // Triangle B: blue and nearer (NDC z = -0.5).
 const positions = new Float32Array([
-  // TODO: 3 vertices for triangle A, then 3 for triangle B.
-  // Each vertex is x, y, z.
+  -0.6,0.8,0.5,
+  0.6,0,0.5,
+  -0.6,-0.8,0.5,
+
+  0.6,0.8,-0.5,
+  0.6,-0.8,-0.5,
+  -0.6,0,-0.5,
 ]);
 
 const colors = new Float32Array([
-  // TODO: 3 RGB colors for triangle A, then 3 RGB colors for triangle B.
+  1,0,0,
+  1,0,0,
+  1,0,0,
+
+  0,1,0,
+  0,1,0,
+  0,1,0
 ]);
 
+const indices= new Uint16Array([
+    0, 1, 2,
+    3, 4, 5
+  ]);
 // TODO 2: Upload positions and colors into separate ARRAY_BUFFERs.
+const positionBuffer = gl.createBuffer()
+gl.bindBuffer(gl.ARRAY_BUFFER,positionBuffer)
+gl.bufferData(gl.ARRAY_BUFFER,positions,gl.STATIC_DRAW)
+
+const colorBuffer = gl.createBuffer()
+gl.bindBuffer(gl.ARRAY_BUFFER,colorBuffer)
+gl.bufferData(gl.ARRAY_BUFFER,colors,gl.STATIC_DRAW)
+
+const indexBuffer = gl.createBuffer()
+gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER,indexBuffer)
+gl.bufferData(gl.ELEMENT_ARRAY_BUFFER,indices,gl.STREAM_DRAW)
+
 // TODO 3: Configure a_position (3 floats) and a_color (3 floats).
-// TODO 4: Enable depth test and set depthFunc to LESS.
-// TODO 5: Clear both color and depth buffers.
-// TODO 6: Draw A then B. Then reverse the calls to compare.
-// TODO 7: Disable depth test and repeat the order comparison.
+
 
 gl.viewport(0, 0, canvas.width, canvas.height);
 gl.clearColor(0.03, 0.04, 0.07, 1.0);
+
+//12. 启用 Shader Program
+gl.useProgram(program);
+
+// 13. 绑定顶点位置
+const positionLocation = gl.getAttribLocation(program, "a_position");
+gl.bindBuffer(gl.ARRAY_BUFFER, positionBuffer);
+
+gl.enableVertexAttribArray(positionLocation);
+
+gl.vertexAttribPointer(
+  positionLocation, 
+  3, 
+  gl.FLOAT, //	
+  false, // 
+  0, //	 
+  0, //	 
+);
+
+const colorLocation = gl.getAttribLocation(program,"a_color")
+gl.bindBuffer(gl.ARRAY_BUFFER,colorBuffer)
+gl.enableVertexAttribArray(colorLocation);
+gl.vertexAttribPointer(colorLocation,3,gl.FLOAT,false,0,0)
+
+// TODO 4: Enable depth test and set depthFunc to LESS.
+gl.enable(gl.DEPTH_TEST);
+gl.depthFunc(gl.LESS);
+// TODO 5: Clear both color and depth buffers.
+gl.clearDepth(1.0);
+gl.clear(
+  gl.COLOR_BUFFER_BIT |
+  gl.DEPTH_BUFFER_BIT
+);
+
+// 15. 发出绘制命令
+// TODO 6: Draw A then B. Then reverse the calls to compare.
+//gl.drawArrays(gl.TRIANGLES, 3, 3); // 三角形 B
+//gl.drawArrays(gl.TRIANGLES, 0, 3); // 三角形 A
+// 15. 发出绘制命令
+gl.drawElements(
+  gl.TRIANGLES,
+  6,
+  gl.UNSIGNED_SHORT,
+  0
+);
+// TODO 7: Disable depth test and repeat the order comparison.
+
+
 console.log("Experiment 01 starter loaded. Complete the TODOs.");
