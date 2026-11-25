@@ -20,7 +20,26 @@ attribute vec3 a_color;
 varying vec3 v_color;
 
 void main() {
-  gl_Position = vec4(a_position, 1.0);
+  // 1. 读取三维顶点
+  float x = a_position.x;
+  float y = a_position.y;
+  float z = a_position.z;
+
+  // 2. 简单斜投影
+  float projectedX = x + z * 0.5;
+  float projectedY = y + z * 0.5;
+
+  // 3. 保留深度信息
+  float projectedZ = z * 0.5;
+
+  // 4. 输出投影后的坐标
+  gl_Position = vec4(
+    projectedX,
+    projectedY,
+    projectedZ,
+    1.0
+  );
+
   v_color = a_color;
 }
 `;
