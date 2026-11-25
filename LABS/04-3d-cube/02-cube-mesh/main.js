@@ -1,4 +1,6 @@
-const canvas = document.getElementById("canvas");
+const canvas = document.querySelector("canvas");
+
+// 1. 获取 WebGL 1.0 上下文
 const gl = canvas.getContext("webgl");
 
 if (!gl) {
@@ -74,29 +76,147 @@ const program = createProgram(gl, vertexShaderSource, fragmentShaderSource);
 // Give the front and back faces different z values.
 const mesh = {
   positions: new Float32Array([
-    // x, y, z
+    // 前面
+    -0.5, -0.5, 0.5,  // 0
+    0.5, -0.5, 0.5,  // 1
+    0.5, 0.5, 0.5,  // 2
+    -0.5, 0.5, 0.5,  // 3
+
+    // 后面
+    -0.5, -0.5, -0.5,  // 4
+    0.5, -0.5, -0.5,  // 5
+    0.5, 0.5, -0.5,  // 6
+    -0.5, 0.5, -0.5   // 7
+
   ]),
 
   // TODO 2: Define one RGB color for each of the 8 vertices.
   colors: new Float32Array([
-    // r, g, b
+     1, 0, 0,
+     1, 0, 0,
+     1, 0, 0,
+
+     0, 0, 1,
+     0, 0, 1,
+     0, 0, 1,
+
+     0, 1, 0,
+     0, 1, 0
   ]),
 
   // TODO 3: Define 36 indices: 6 faces × 2 triangles × 3 indices.
   // Use only vertex indices 0..7.
   indices: new Uint16Array([
-    // front, back, left, right, top, bottom
+    // 前面
+    0, 1, 2,
+    0, 2, 3,
+
+    // 后面
+    4, 6, 5,
+    4, 7, 6,
+
+    // 左面
+    4, 0, 3,
+    4, 3, 7,
+
+    // 右面
+    1, 5, 6,
+    1, 6, 2,
+
+    // 顶面
+    3, 2, 6,
+    3, 6, 7,
+
+    // 底面
+    4, 5, 1,
+    4, 1, 0
   ])
+
 };
 
 // TODO 4: Create two ARRAY_BUFFERs and upload positions/colors.
-// TODO 5: Create one ELEMENT_ARRAY_BUFFER and upload indices.
-// TODO 6: Configure a_position and a_color attributes.
-// TODO 7: Enable DEPTH_TEST with LESS.
-// TODO 8: Clear COLOR_BUFFER_BIT and DEPTH_BUFFER_BIT.
-// TODO 9: Draw the mesh with drawElements(TRIANGLES, 36, UNSIGNED_SHORT, 0).
+const positionBuffer = gl.createBuffer();
+gl.bindBuffer(gl.ARRAY_BUFFER, positionBuffer);
+gl.bufferData(gl.ARRAY_BUFFER,mesh.positions,gl.STATIC_DRAW);
 
+const colorBuffer = gl.createBuffer();
+gl.bindBuffer(gl.ARRAY_BUFFER,colorBuffer);
+gl.bufferData(gl.ARRAY_BUFFER,mesh.colors,gl.STATIC_DRAW);
+
+// TODO 5: Create one ELEMENT_ARRAY_BUFFER and upload indices.
+const indexBuffer = gl.createBuffer();
+gl.bindBuffer(
+  gl.ELEMENT_ARRAY_BUFFER,
+  indexBuffer
+);
+gl.bufferData(
+  gl.ELEMENT_ARRAY_BUFFER,
+  mesh.indices,
+  gl.STATIC_DRAW
+);
+// TODO 6: Configure a_position and a_color attributes.
+const positionLocation = gl.getAttribLocation(
+  program,
+  "a_position"
+);
+const colorLocation = gl.getAttribLocation(
+  program,
+  "a_color"
+);
+
+gl.bindBuffer(
+  gl.ARRAY_BUFFER,
+  positionBuffer
+);
+
+gl.enableVertexAttribArray(positionLocation);
+
+gl.vertexAttribPointer(
+  positionLocation,
+  3,
+  gl.FLOAT,
+  false,
+  0,
+  0
+);
+
+gl.bindBuffer(
+  gl.ARRAY_BUFFER,
+  colorBuffer
+);
+
+gl.enableVertexAttribArray(colorLocation);
+
+gl.vertexAttribPointer(
+  colorLocation,
+  3,
+  gl.FLOAT,
+  false,
+  0,
+  0
+);
+// TODO 7: Enable DEPTH_TEST with LESS.
+gl.enable(gl.DEPTH_TEST);
+
+gl.depthFunc(gl.LESS);
 gl.viewport(0, 0, canvas.width, canvas.height);
 gl.clearColor(0.03, 0.04, 0.07, 1.0);
+
+// TODO 8: Clear COLOR_BUFFER_BIT and DEPTH_BUFFER_BIT.
+gl.clearDepth(1.0);
+
+gl.clear(
+  gl.COLOR_BUFFER_BIT |
+  gl.DEPTH_BUFFER_BIT
+);
+// TODO 9: Draw the mesh with drawElements(TRIANGLES, 36, UNSIGNED_SHORT, 0).
+gl.useProgram(program);
+
+gl.drawElements(
+  gl.TRIANGLES,
+  36,
+  gl.UNSIGNED_SHORT,
+  0
+);
 
 console.log("Experiment 02 starter loaded. Complete the cube Mesh TODOs.");
