@@ -30,7 +30,7 @@ void main() {
   float projectedY = y + z * 0.5;
 
   // 3. 保留深度信息
-  float projectedZ = z * 0.5;
+  float projectedZ = -z * 0.5;
 
   // 4. 输出投影后的坐标
   gl_Position = vec4(
@@ -238,4 +238,4 @@ gl.drawElements(
   0
 );
 
-console.log("Experiment 02 starter loaded. Complete the cube Mesh TODOs.");
+console.log("LearnGraphics 04.02 Cube Mesh completed.");
