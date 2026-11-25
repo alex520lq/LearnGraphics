@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LearnGraphics - Lesson 04.01 — Depth Test</title>
+  <style>
+    * { box-sizing: border-box; }
+    body { margin: 0; min-height: 100vh; display: grid; place-items: center; background: #151922; color: #f3f4f6; font-family: system-ui, sans-serif; }
+    main { width: min(900px, 96vw); }
+    h1 { font-size: 1.25rem; }
+    p { color: #aab3c2; line-height: 1.6; }
+    canvas { display: block; width: 100%; height: auto; aspect-ratio: 16 / 10; border: 1px solid #465064; background: #080b12; }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>Lesson 04.01 — Depth Test</h1>
+    <p>Experiment: compare two overlapping triangles with different depths.</p>
+    <canvas id="canvas" width="800" height="500"></canvas>
+  </main>
+  <script src="main.js"></script>
+</body>
+</html>
