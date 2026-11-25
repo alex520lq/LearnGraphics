@@ -82,10 +82,7 @@ const colors = new Float32Array([
   0, 0, 1
 ]);
 
-const indices = new Uint16Array([
-  0, 1, 2,
-  3, 4, 5
-]);
+
 // TODO 2: Upload positions and colors into separate ARRAY_BUFFERs.
 const positionBuffer = gl.createBuffer()
 gl.bindBuffer(gl.ARRAY_BUFFER, positionBuffer)
@@ -95,9 +92,6 @@ const colorBuffer = gl.createBuffer()
 gl.bindBuffer(gl.ARRAY_BUFFER, colorBuffer)
 gl.bufferData(gl.ARRAY_BUFFER, colors, gl.STATIC_DRAW)
 
-const indexBuffer = gl.createBuffer()
-gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, indexBuffer)
-gl.bufferData(gl.ELEMENT_ARRAY_BUFFER, indices, gl.STREAM_DRAW)
 
 // TODO 3: Configure a_position (3 floats) and a_color (3 floats).
 
@@ -129,8 +123,8 @@ gl.enableVertexAttribArray(colorLocation);
 gl.vertexAttribPointer(colorLocation, 3, gl.FLOAT, false, 0, 0)
 
 // 实验开关
-const useDepthTest = false;
-const drawNearFirst = true;
+const useDepthTest = true;
+const drawNearFirst = false;
 
 // 深度测试开关
 if (useDepthTest) {
