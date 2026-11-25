@@ -7,7 +7,7 @@
 主线项目：MiniGame Renderer  
 当前阶段：03 原生 WebGL 1.0  
 当前课程：04 — 3D 坐标、深度测试与立方体；当前子实验：04.02 Cube Mesh  
-当前状态：04.01 已通过（源码逻辑验收）；04.02 已初始化，待学习  
+当前状态：04.01、04.02 已通过源码逻辑验收；当前子实验：04.03 Back-face Culling，待初始化  
 总体状态：进行中
 
 ## 阶段看板
@@ -54,11 +54,11 @@
 | 子实验 | 核心问题 | 状态 |
 |---|---|---|
 | 04.01 Depth Test | 深度测试如何决定遮挡？ | 已通过（源码逻辑验收） |
-| 04.02 Cube Mesh | 如何组织 3D 立方体顶点与索引？ | 已初始化，待学习 |
-| 04.03 Back-face Culling | 如何按绕序剔除背面？ | 已初始化，未开始 |
+| 04.02 Cube Mesh | 如何组织 3D 立方体顶点与索引？ | 已通过（源码逻辑验收） |
+| 04.03 Back-face Culling | 如何按绕序剔除背面？ | 待初始化 |
 
 课程总览：[LABS/04-3d-cube/README.md](LABS/04-3d-cube/README.md)
-当前实验：[LABS/04-3d-cube/02-cube-mesh/README.md](LABS/04-3d-cube/02-cube-mesh/README.md)
+当前实验：[LABS/04-3d-cube/03-back-face-culling/README.md](LABS/04-3d-cube/03-back-face-culling/README.md)
 
 每个子实验独立提交、独立验收；三个子实验全部通过后才标记本课完成。
 
@@ -99,3 +99,6 @@
 - 遇到什么 Bug，如何定位？
 - 技术在目标游戏中有什么用途？
 - 性能、兼容性和画质有哪些取舍？
+
+
+04.02 第二次源码复查：确认 8 个 XYZ 顶点、8 组 RGB、36 个索引、六面三角形拓扑、两个 ARRAY_BUFFER、一个 ELEMENT_ARRAY_BUFFER、Attribute 绑定与 drawElements 调用均正确。简化斜投影已加入，且 projectedZ 改为 -z * 0.5，使当前约定下前面深度值更小，符合 LESS。源码逻辑验收通过；未连接学习者浏览器，不声称亲自观察运行画面。下一步进入 04.03 背面剔除。
