@@ -6,8 +6,8 @@
 仓库：alex520lq/LearnGraphics  
 主线项目：MiniGame Renderer  
 当前阶段：03 原生 WebGL 1.0  
-当前课程：04 — 3D 坐标、深度测试与立方体；当前子实验：04.01 Depth Test  
-当前状态：04.01 已通过（源码逻辑验收）  
+当前课程：04 — 3D 坐标、深度测试与立方体；当前子实验：04.02 Cube Mesh  
+当前状态：04.01 已通过（源码逻辑验收）；04.02 已初始化，待学习  
 总体状态：进行中
 
 ## 阶段看板
@@ -54,11 +54,11 @@
 | 子实验 | 核心问题 | 状态 |
 |---|---|---|
 | 04.01 Depth Test | 深度测试如何决定遮挡？ | 已通过（源码逻辑验收） |
-| 04.02 Cube Mesh | 如何组织 3D 立方体顶点与索引？ | 已初始化，未开始 |
+| 04.02 Cube Mesh | 如何组织 3D 立方体顶点与索引？ | 已初始化，待学习 |
 | 04.03 Back-face Culling | 如何按绕序剔除背面？ | 已初始化，未开始 |
 
 课程总览：[LABS/04-3d-cube/README.md](LABS/04-3d-cube/README.md)
-当前实验：[LABS/04-3d-cube/01-depth-test/README.md](LABS/04-3d-cube/01-depth-test/README.md)
+当前实验：[LABS/04-3d-cube/02-cube-mesh/README.md](LABS/04-3d-cube/02-cube-mesh/README.md)
 
 每个子实验独立提交、独立验收；三个子实验全部通过后才标记本课完成。
 
